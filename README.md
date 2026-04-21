@@ -66,7 +66,7 @@ graph TD
     View Reports
     Open reports/result.html in a browser.
 
-    aunch Dashboard (Streamlit)
+    Launch Dashboard (Streamlit)
     bash
     streamlit run dashboard.py
     
