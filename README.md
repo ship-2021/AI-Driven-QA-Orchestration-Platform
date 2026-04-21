@@ -2,7 +2,7 @@
 
 [![Pipeline Status](https://gitlab.com/your-username/qa-orchestrator/badges/main/pipeline.svg)](https://gitlab.com/your-username/qa-orchestrator/-/pipelines)
 
-**Lead QA interview project** – Demonstrates automated test strategy, AI‑powered test generation, financial compliance (bias gate), and CI/CD integration.
+ – Demonstrates automated test strategy, AI‑powered test generation, financial compliance (bias gate), and CI/CD integration.
 
 ## 📌 Overview
 
