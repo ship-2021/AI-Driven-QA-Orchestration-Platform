@@ -1,0 +1,62 @@
+name: QA Compliance Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  bias-compliance-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas scikit-learn fairlearn
+
+      - name: Download dataset (if not in repo)
+        run: python download_data.py
+
+      - name: Run bias compliance check
+        run: python bias_monitor.py
+
+      - name: Upload bias report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bias-report
+          path: bias_report.txt
+
+  full-pipeline:
+    runs-on: ubuntu-latest
+    needs: bias-compliance-check
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Run full QA pipeline
+        run: python main.py
+
+      - name: Upload pipeline logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline-logs
+          path: pipeline.log

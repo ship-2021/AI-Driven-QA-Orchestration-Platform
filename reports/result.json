@@ -1,0 +1,28 @@
+{
+  "suite": "Loan API QA",
+  "timestamp": "2026-04-20T20:46:33.824832",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "bias_compliant": true,
+  "details": [
+    {
+      "id": "TC001",
+      "title": "Get existing loan",
+      "type": "positive",
+      "tool": "api",
+      "passed": true,
+      "stdout": "PASS\n",
+      "stderr": ""
+    },
+    {
+      "id": "TC002",
+      "title": "Get non\u2011existent loan",
+      "type": "negative",
+      "tool": "api",
+      "passed": true,
+      "stdout": "PASS\n",
+      "stderr": ""
+    }
+  ]
+}
